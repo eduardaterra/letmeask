@@ -1,7 +1,7 @@
 import React from "react";
+import NewRoom from "./pages/NewRoom";
 
-function App() {
-  return <div className="App"></div>;
-}
-
+const App = () => {
+  return <NewRoom />;
+};
 export default App;

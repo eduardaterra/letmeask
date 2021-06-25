@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { FormEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 import logoImg from "../assets/images/logo.svg";
@@ -11,15 +12,63 @@ type RoomParams = {
   id: string;
 };
 
+type FirebaseQuestions = Record<
+  string,
+  {
+    author: {
+      name: string;
+      avatar: string;
+    };
+    content: string;
+    isHighlighted: boolean;
+    isAnswered: boolean;
+  }
+>;
+
+type Questions = {
+  id: string;
+  author: {
+    name: string;
+    avatar: string;
+  };
+  content: string;
+  isHighlighted: boolean;
+  isAnswered: boolean;
+};
+
 const Room = () => {
   const { user } = useAuth();
   const params = useParams<RoomParams>();
   const roomId = params.id;
   const [newQuestion, setNewQuestion] = useState("");
+  const [questions, setQuestions] = useState<Questions[]>([]);
+  const [title, setTitle] = useState("");
+
+  useEffect(() => {
+    const roomRef = db.ref(`rooms/${roomId}`);
+
+    roomRef.on("value", (room) => {
+      const dbRoom = room.val();
+      const firebaseQuestions: FirebaseQuestions = dbRoom.questions;
+      const parsedQuestions = Object.entries(firebaseQuestions).map(
+        ([key, value]) => {
+          return {
+            id: key,
+            content: value.content,
+            author: value.author,
+            isHighlighted: value.isHighlighted,
+            isAnswered: value.isAnswered,
+          };
+        }
+      );
+      setTitle(dbRoom.title);
+      setQuestions(parsedQuestions);
+    });
+  }, [roomId]);
 
   const handleSendQuestion = async (event: FormEvent) => {
+    event.preventDefault();
     if (newQuestion.trim() === "") {
-      event.preventDefault();
       return;
     }
     if (!user) {
@@ -54,14 +103,15 @@ const Room = () => {
 
       <main>
         <div className="room-title">
-          <h1>Sala React</h1>
-          <span>4 perguntas</span>
+          <h1>Sala {title}</h1>
+          {questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
         </div>
 
         <form onSubmit={handleSendQuestion}>
           <textarea
             placeholder="O que você quer perguntar?"
             onChange={(event) => setNewQuestion(event.target.value)}
+            value={newQuestion}
           />
           <div className="form-footer">
             {user ? (
@@ -79,6 +129,7 @@ const Room = () => {
             </Button>
           </div>
         </form>
+        {JSON.stringify(questions)}
       </main>
     </div>
   );

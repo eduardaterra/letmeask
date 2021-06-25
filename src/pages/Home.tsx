@@ -54,14 +54,14 @@ const Home = () => {
             Crie sua sala com o Google
           </button>
           <div className="separator">ou entre em uma sala</div>
-          <form onChange={handleJoinRoom}>
+          <form onSubmit={handleJoinRoom}>
             <input
               type="text"
               placeholder="Digite o código da sala"
               onChange={(event) => setRoomCode(event.target.value)}
             />
+            <Button type="submit">Entrar na sala</Button>
           </form>
-          <Button type="submit">Entrar na sala</Button>
         </div>
       </main>
     </div>

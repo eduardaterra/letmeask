@@ -37,7 +37,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     return () => {
       unsubscribe();
     };
-  });
+  }, []);
 
   const signInWithGoogle = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();

@@ -1,0 +1,52 @@
+.toggle-container {
+  display: flex;
+  height: 40px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+
+  .toggle-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    background-color: rgb(47, 47, 47);
+    margin: 5px;
+    width: 82px;
+    height: 45px;
+    padding: 5px;
+
+    color: white;
+    border-radius: 50px;
+    transition: background-color 400ms;
+
+    &.dark {
+      background-color: #835afd;
+      transition: background-color 400ms;
+    }
+
+    .toggle {
+      border-radius: 50%;
+      background-color: #fff;
+      height: 35px;
+      width: 35px;
+      position: absolute;
+      &.light {
+        transform: translateX(-50%);
+        transition: transform 300ms;
+      }
+      &.dark {
+        transform: translateX(50%);
+        transition: transform 300ms;
+      }
+    }
+  }
+  img {
+    height: 28px;
+    cursor: pointer;
+    &.moon {
+      height: 25px;
+    }
+  }
+}

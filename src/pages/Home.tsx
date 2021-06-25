@@ -1,5 +1,6 @@
 import illustrationImg from "../assets/images/illustration.svg";
 import logoImg from "../assets/images/logo.svg";
+import logoDarkModeImg from "../assets/images/logo-dark-mode.svg";
 import googleImg from "../assets/images/google-icon.svg";
 import "../styles/auth.scss";
 import Button from "../components/Button";
@@ -8,11 +9,14 @@ import useAuth from "../hooks/useAuth";
 import { FormEvent } from "react";
 import { useState } from "react";
 import { db } from "../services/firebase";
+import useTheme from "../hooks/useTheme";
+import ToggleTheme from "../components/ToggleTheme";
 
 const Home = () => {
   const history = useHistory();
   const { user, signInWithGoogle } = useAuth();
   const [roomCode, setRoomCode] = useState("");
+  const { theme } = useTheme();
 
   const handleCreateRoom = async () => {
     if (!user) {
@@ -37,7 +41,7 @@ const Home = () => {
   };
 
   return (
-    <div id="page-auth">
+    <div id="page-auth" className={theme}>
       <aside>
         <img
           src={illustrationImg}
@@ -48,7 +52,12 @@ const Home = () => {
       </aside>
       <main>
         <div className="main-content">
-          <img src={logoImg} alt="Letmeask Logo" />
+          {theme === "light" ? (
+            <img src={logoImg} alt="Letmeask Logo" />
+          ) : (
+            <img src={logoDarkModeImg} alt="Letmeask Logo" />
+          )}
+          <ToggleTheme />
           <button className="create-room" onClick={handleCreateRoom}>
             <img src={googleImg} alt="Google logo" />
             Crie sua sala com o Google

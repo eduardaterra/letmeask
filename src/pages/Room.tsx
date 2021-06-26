@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import RoomCode from "../components/RoomCode";
 import useAuth from "../hooks/useAuth";
 import { db } from "../services/firebase";
+import Question from "../components/Question";
 import "../styles/room.scss";
 
 type RoomParams = {
@@ -131,7 +132,15 @@ const Room = () => {
             </Button>
           </div>
         </form>
-        {JSON.stringify(questions)}
+        {questions.map((question) => {
+          return (
+            <Question
+              key={question.id}
+              content={question.content}
+              author={question.author}
+            />
+          );
+        })}
       </main>
     </div>
   );

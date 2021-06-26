@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { auth, firebase } from "../services/firebase";
+import "../styles/spinner.scss";
 
 type UserProps = {
   id: string;
@@ -16,6 +17,7 @@ const AuthContext = createContext({} as AuthContextState);
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<UserProps>();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -33,6 +35,9 @@ export const AuthProvider: React.FC = ({ children }) => {
         });
       }
     });
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
 
     return () => {
       unsubscribe();
@@ -58,6 +63,9 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
   };
 
+  if (loading) {
+    return <div className="spinner" />;
+  }
   return (
     <AuthContext.Provider value={{ user, signInWithGoogle }}>
       {children}

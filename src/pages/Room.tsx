@@ -48,8 +48,9 @@ const Room = () => {
     const roomRef = db.ref(`rooms/${roomId}`);
 
     roomRef.on("value", (room) => {
-      const dbRoom = room.val();
-      const firebaseQuestions: FirebaseQuestions = dbRoom.questions;
+      const databaseRoom = room.val();
+      const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {};
+
       const parsedQuestions = Object.entries(firebaseQuestions).map(
         ([key, value]) => {
           return {
@@ -61,7 +62,8 @@ const Room = () => {
           };
         }
       );
-      setTitle(dbRoom.title);
+
+      setTitle(databaseRoom.title);
       setQuestions(parsedQuestions);
     });
   }, [roomId]);

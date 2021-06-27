@@ -55,13 +55,13 @@ const Home = () => {
         <p>Tire as dúvidas da sua audiência em tempo real.</p>
       </aside>
       <main>
+        <ToggleTheme />
         <div className="main-content">
           {theme === "light" ? (
             <img src={logoImg} alt="Letmeask Logo" />
           ) : (
             <img src={logoDarkModeImg} alt="Letmeask Logo" />
           )}
-          <ToggleTheme />
           <button className="create-room" onClick={handleCreateRoom}>
             <img src={googleImg} alt="Google logo" />
             Crie sua sala com o Google

@@ -7,11 +7,15 @@ import { FormEvent } from "react";
 import useAuth from "../hooks/useAuth";
 import { useState } from "react";
 import { db } from "../services/firebase";
+import useTheme from "../hooks/useTheme";
+import ToggleTheme from "../components/ToggleTheme";
+import logoDarkMode from "../assets/images/logo-dark-mode.svg";
 
 const NewRoom = () => {
   const [newRoom, setNewRoom] = useState("");
   const { user } = useAuth();
   const history = useHistory();
+  const { theme } = useTheme();
 
   const handleCreateNewRoom = async (event: FormEvent) => {
     event.preventDefault();
@@ -29,7 +33,7 @@ const NewRoom = () => {
   };
 
   return (
-    <div id="page-auth">
+    <div id="page-auth" className={theme}>
       <aside>
         <img
           src={illustrationImg}
@@ -39,9 +43,16 @@ const NewRoom = () => {
         <p>Tire as dúvidas da sua audiência em tempo real.</p>
       </aside>
       <main>
+        <ToggleTheme />
         <div className="main-content">
-          <img src={logoImg} alt="Letmeask Logo" />
+          {theme === "light" ? (
+            <img src={logoImg} alt="Letmeask Logo" />
+          ) : (
+            <img src={logoDarkMode} alt="Letmeask Logo Dark Mode" />
+          )}
+
           <h2>Crie uma nova sala</h2>
+
           <form onSubmit={handleCreateNewRoom}>
             <input
               type="text"

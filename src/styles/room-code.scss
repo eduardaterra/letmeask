@@ -1,4 +1,12 @@
 .room-code {
+  &.dark {
+    .room-code {
+      background: rgb(47, 47, 47);
+      > span {
+        color: #e2e2e2;
+      }
+    }
+  }
   height: 40px;
   border-radius: 8px;
   overflow: hidden;
@@ -20,6 +28,7 @@
     display: block;
     align-self: center;
     flex: 1;
+    color: rgb(47, 47, 47);
     padding: 0 16px 0 12px;
     width: 240px;
     font-size: 14px;

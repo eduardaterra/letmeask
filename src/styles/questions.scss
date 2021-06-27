@@ -1,30 +1,67 @@
-.question-list {
-  margin-top: 14px;
-  width: 100%;
-}
-
 .question {
   background: #fefefe;
   border-radius: 9px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   padding: 24px;
-
-  &.highlighted {
-    background: #dfd3ff;
-    border: 1px solid #835afd;
-    footer .user-info span {
-      color: #29292e;
+  &.dark {
+    background: #202024;
+    p {
+      color: #e2e2e2;
     }
   }
 
-  &.answered {
+  &.highlighted-light {
+    background: #dfd3ff;
+    border: 1px solid #835afd;
+  }
+
+  &.highlighted-dark {
+    background: #160f29;
+    border: 1px solid #835afd;
+  }
+
+  &.answered-light {
     background: #dbdcdd;
+    p {
+      color: #91919e;
+    }
+
     .check-img {
       path {
         stroke: #835afd;
       }
       circle {
         stroke: #835afd;
+      }
+    }
+    footer .user-info {
+      span {
+        color: #91919e;
+      }
+      img {
+        filter: brightness(0.7);
+      }
+    }
+  }
+  &.answered-dark {
+    background: #111114;
+    p {
+      color: #34343b;
+    }
+    .check-img {
+      path {
+        stroke: #835afd;
+      }
+      circle {
+        stroke: #835afd;
+      }
+    }
+    footer .user-info {
+      span {
+        color: #34343b;
+      }
+      img {
+        filter: brightness(0.5);
       }
     }
   }
@@ -35,6 +72,7 @@
 
   p {
     color: #29292e;
+    font-weight: 700;
   }
   footer {
     display: flex;
@@ -81,8 +119,14 @@
           }
         }
       }
-      svg {
+      .like-img {
         margin: 0 0 1px 5px;
+      }
+      .delete-img:hover {
+        path {
+          stroke: #ea4335;
+          transition: stroke 0.2s;
+        }
       }
 
       &:hover {

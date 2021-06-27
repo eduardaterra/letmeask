@@ -5,8 +5,11 @@ import { AuthProvider } from "./contexts/AuthContext";
 import Room from "./pages/Room";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import AdminRoom from "./pages/AdminRoom";
+import useTheme from "./hooks/useTheme";
 
 const App = () => {
+  const { theme } = useTheme();
+
   return (
     <BrowserRouter>
       <ThemeProvider>

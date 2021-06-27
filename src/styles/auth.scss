@@ -8,6 +8,7 @@
     main {
       input {
         background-color: rgb(47, 47, 47);
+        color: white;
       }
     }
     h2 {
@@ -65,7 +66,7 @@ main {
   max-width: 320px;
   align-items: stretch;
   text-align: center;
-  margin-bottom: 200px;
+  margin-bottom: 30%;
 
   > img {
     align-self: center;

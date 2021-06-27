@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import useTheme from "../hooks/useTheme";
 import { auth, firebase } from "../services/firebase";
 import "../styles/spinner.scss";
 
@@ -18,6 +19,7 @@ const AuthContext = createContext({} as AuthContextState);
 export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<UserProps>();
   const [loading, setLoading] = useState(true);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -64,7 +66,11 @@ export const AuthProvider: React.FC = ({ children }) => {
   };
 
   if (loading) {
-    return <div className="spinner" />;
+    return (
+      <div id="loading-page" className={theme}>
+        <div className="spinner" />
+      </div>
+    );
   }
   return (
     <AuthContext.Provider value={{ user, signInWithGoogle }}>

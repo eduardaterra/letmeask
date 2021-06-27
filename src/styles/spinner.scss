@@ -1,3 +1,14 @@
+#loading-page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dark {
+  background: rgb(47, 47, 47);
+}
+
 .spinner {
   border: 8px solid rgba(0, 0, 0, 0.1);
   border-left-color: #835afd;
@@ -6,7 +17,7 @@
   height: 100px;
   justify-content: center;
   align-items: center;
-  margin: 25% auto;
+  margin: auto;
   animation: spin 1s linear infinite;
 
   @keyframes spin {

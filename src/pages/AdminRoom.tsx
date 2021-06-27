@@ -21,13 +21,13 @@ const AdminRoom = () => {
 
   const handleEndRoom = async () => {
     db.ref(`rooms/${roomId}`).update({ endedAt: new Date() });
+    history.push("/");
   };
 
   const handleDeleteQuestion = async (questionId: string) => {
     if (window.confirm("Tem certeza que deseja deletar essa pergunta?")) {
       await db.ref(`rooms/${roomId}/questions/${questionId}`).remove();
     }
-    history.push("/");
   };
 
   const handleCheckedQuestion = async (questionId: string) => {

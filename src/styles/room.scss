@@ -1,10 +1,5 @@
-body,
-html {
-  min-height: 100vh;
-  max-height: 300%;
-}
-
 #page-room {
+  min-height: 100vh;
   &.dark {
     background-color: rgb(22, 22, 22);
     height: 100%;
@@ -144,7 +139,23 @@ html {
     .question-list {
       margin: 14px;
       width: 100%;
-      height: 100vh;
+      .empty-question-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        > img {
+          height: 130px;
+          margin: 10px;
+        }
+        > h1 {
+          font-family: "Poppins", sans-serif;
+          font-weight: 700;
+          color: #737380;
+          font-size: 24px;
+        }
+      }
     }
   }
 }

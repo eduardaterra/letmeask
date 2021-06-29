@@ -39,8 +39,8 @@ const NewRoom = () => {
           src={illustrationImg}
           alt="Ilustração simbolizando perguntas e respostas"
         />
-        <strong>Crie salas de Q&amp;A ao-vivo</strong>
-        <p>Tire as dúvidas da sua audiência em tempo real.</p>
+        <strong>Create live Q&amp;A rooms</strong>
+        <p>Make it easy for you to interact with your audience!</p>
       </aside>
       <main>
         <ToggleTheme />
@@ -51,20 +51,20 @@ const NewRoom = () => {
             <img src={logoDarkMode} alt="Letmeask Logo Dark Mode" />
           )}
 
-          <h2>Crie uma nova sala</h2>
+          <h2>Create a new room</h2>
 
           <form onSubmit={handleCreateNewRoom}>
             <input
               type="text"
-              placeholder="Nome da sala"
+              placeholder="Room name"
               onChange={(event) => setNewRoom(event.target.value)}
             />
-            <Button type="submit">Criar Sala</Button>
+            <Button type="submit">Create Room</Button>
           </form>
 
           <p>
-            Quer entrar em uma sala já existente?{" "}
-            <Link to="/">clique aqui</Link>
+            Do you want to enter in an already existing room?{" "}
+            <Link to="/">click here</Link>
           </p>
         </div>
       </main>

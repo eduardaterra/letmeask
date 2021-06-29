@@ -47,12 +47,9 @@ const Home = () => {
   return (
     <div id="page-auth" className={theme}>
       <aside>
-        <img
-          src={illustrationImg}
-          alt="Ilustração simbolizando perguntas e respostas"
-        />
-        <strong>Crie salas de Q&amp;A ao-vivo</strong>
-        <p>Tire as dúvidas da sua audiência em tempo real.</p>
+        <img src={illustrationImg} alt="Questions and Answer illustration" />
+        <strong>Create live Q&amp;A rooms</strong>
+        <p>Make it easy for you to interact with your audience!</p>
       </aside>
       <main>
         <ToggleTheme />
@@ -64,16 +61,16 @@ const Home = () => {
           )}
           <button className="create-room" onClick={handleCreateRoom}>
             <img src={googleImg} alt="Google logo" />
-            Crie sua sala com o Google
+            Create room with Google
           </button>
-          <div className="separator">ou entre em uma sala</div>
+          <div className="separator">or enter a room</div>
           <form onSubmit={handleJoinRoom}>
             <input
               type="text"
-              placeholder="Digite o código da sala"
+              placeholder="Enter the room code"
               onChange={(event) => setRoomCode(event.target.value)}
             />
-            <Button type="submit">Entrar na sala</Button>
+            <Button type="submit">Enter room</Button>
           </form>
         </div>
       </main>

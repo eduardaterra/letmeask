@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import Spinner from "../components/Spinner";
 import useTheme from "../hooks/useTheme";
 import { auth, firebase } from "../services/firebase";
 import "../styles/spinner.scss";
@@ -39,7 +40,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     });
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 500);
 
     return () => {
       unsubscribe();
@@ -68,7 +69,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   if (loading) {
     return (
       <div id="loading-page" className={theme}>
-        <div className="spinner" />
+        <Spinner />
       </div>
     );
   }
